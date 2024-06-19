@@ -7,7 +7,6 @@ import configuration as conf
 # Import ConvNext (A ConvNet for the 2020s) with it's weights
 from torchvision.models import convnext_tiny, ConvNeXt_Tiny_Weights
 
-
 # Inherits from nn.Module
 class ConvNext(nn.Module):
     # Device sets where to run (CPU, GPU, TPU...etc)
