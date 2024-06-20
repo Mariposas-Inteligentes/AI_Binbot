@@ -70,7 +70,14 @@ def start_camera():
     camera_label.pack()
 
     # Create a button to capture the photo
-    capture_button = tk.Button(camera_window, text="Capture Photo", command=capture_photo)
+    capture_button = tk.Button(
+        camera_window, 
+        text="Capture Photo", 
+        command=capture_photo,
+        width=20,  
+        height=2
+        # font=button_font
+    )
     capture_button.pack(pady=20)
 
 
@@ -100,7 +107,7 @@ imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
 
 
 # Create a button to open the camera window
-open_camera_button = tk.Button(root, text="Open Camera", command=start_camera)
+open_camera_button = tk.Button(root, text="Open Camera", command=start_camera, width=20, height=2)
 open_camera_button.pack(pady=20)
 
 root.mainloop()
