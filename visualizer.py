@@ -2,10 +2,22 @@ import cv2
 import os
 import tkinter as tk
 import configuration as config
+from tkinter import font
 from tkinter import messagebox
 from tkinter import PhotoImage
 from PIL import Image, ImageTk
 from trained_convnext import TrainedConvNext
+
+def center_window(root, width, height):
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    # Calculate the position of the window
+    x = (screen_width // 2) - (width // 2)
+    y = (screen_height // 2) - (height // 2)
+
+    # Set the geometry of the window
+    root.geometry(f'{width}x{height}+{x}+{y}')
 
 # Function to update the webcam feed
 def update_frame():
@@ -33,7 +45,6 @@ def show_trash(result):
     imaLab.image = new_image
 
     camera_window.destroy()
-
 
 # Function to capture a photo
 def capture_photo():
@@ -64,6 +75,9 @@ def start_camera():
     # Create a new window for the camera feed
     camera_window = tk.Toplevel(root)
     camera_window.title("Camera Feed")
+    camera_window.geometry("750x550")
+    camera_window.configure(bg = '#DAF5EB')
+    center_window(camera_window, 750, 580)
 
     # Create a label to display the camera feed
     camera_label = tk.Label(camera_window)
@@ -75,11 +89,10 @@ def start_camera():
         text="Capture Photo", 
         command=capture_photo,
         width=20,  
-        height=2
-        # font=button_font
+        height=2,
+        font = font.Font(family="Helvetica", size=12)
     )
     capture_button.pack(pady=20)
-
 
     # Start updating the webcam feed
     update_frame()
@@ -91,13 +104,14 @@ def on_camera_window_close():
     cap.release()
     camera_window.destroy()
 
-
 # Create the main window
 root = tk.Tk()
 root.title("Main Window")
-root.geometry("1920x1080")
-root.title("Binbot")  
-root.resizable(True, True)
+root.geometry("1209x700")
+root.title("Binbot")
+root.resizable(False, False)
+root.configure(bg = "#DAF5EB")
+center_window(root, 1209, 700)
 
 # Default image
 im=tk.PhotoImage(file='./trashcans/Closed.gif')
@@ -105,10 +119,16 @@ im= im.subsample(1,1)
 imaLab= tk.Label(image=im)
 imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
 
-
 # Create a button to open the camera window
-open_camera_button = tk.Button(root, text="Open Camera", command=start_camera, width=20, height=2)
-open_camera_button.pack(pady=20)
+open_camera_button = tk.Button(
+    root,
+    text="Open Camera", 
+    command=start_camera, 
+    width=20, 
+    height=2,
+    font = font.Font(family="Helvetica", size=12)
+)
+open_camera_button.pack(pady=25)
 
 root.mainloop()
 
