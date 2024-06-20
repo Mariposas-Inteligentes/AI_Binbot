@@ -3,6 +3,7 @@ import os
 import tkinter as tk
 import configuration as config
 from tkinter import messagebox
+from tkinter import PhotoImage
 from PIL import Image, ImageTk
 from trained_convnext import TrainedConvNext
 
@@ -22,9 +23,21 @@ def update_frame():
     # Schedule the update function to run again after 10 milliseconds
     camera_window.after(10, update_frame)
 
+def show_trash(result):
+    new_image = PhotoImage(file='./trashcans/Metal.gif') 
+    if (result == "glass"):
+        new_image = PhotoImage(file='./trashcans/Glass.gif') 
+    elif (result == "cardboard"):
+        new_image = PhotoImage(file='./trashcans/Cardboard.gif') 
+    imaLab.config(image=new_image)
+    imaLab.image = new_image
+
+    camera_window.destroy()
+
+
 # Function to capture a photo
 def capture_photo():
-    ret, frame = cap.read()  # Capture a single frame
+    ret, frame = cap.read()  
     if ret:
         # Create directory if it doesn't exist
         save_dir = "photos"
@@ -32,14 +45,11 @@ def capture_photo():
         save_path = os.path.join(save_dir, "captured_photo.jpg")
         
         cv2.imwrite(save_path, frame)  # Save the captured frame to a file
-        messagebox.showinfo("Success", f"Photo captured successfully!\nSaved at: {save_path}")
         # Send to CNN after the main loop
-        print("Creating the model...")
         trained_model = TrainedConvNext()
-        print("Model created! Predicting...")
         image_path = 'photos/captured_photo.jpg'
         predicted_class = trained_model.predict(image_path)
-        print(f'Predicted class: {config.CLASS_NAMES[predicted_class]}')
+        show_trash(config.CLASS_NAMES[predicted_class])
     else:
         messagebox.showerror("Error", "Failed to capture photo")
 
@@ -82,10 +92,9 @@ root.geometry("1920x1080")
 root.title("Binbot")  
 root.resizable(True, True)
 
-
+# Default image
 im=tk.PhotoImage(file='./trashcans/Closed.gif')
-im= im.subsample(1,1) #tamaño
-#Se establece la imagen como una etiqueta:
+im= im.subsample(1,1)
 imaLab= tk.Label(image=im)
 imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
 
@@ -94,6 +103,5 @@ imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
 open_camera_button = tk.Button(root, text="Open Camera", command=start_camera)
 open_camera_button.pack(pady=20)
 
-# Run the Tkinter event loop
 root.mainloop()
 
