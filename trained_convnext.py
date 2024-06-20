@@ -49,11 +49,3 @@ class TrainedConvNext():
       _, predicted_class = outputs.max(1)
       
       return predicted_class.item()
-
-def test():
-  print("Creating the model...")
-  trained_model = TrainedConvNext()
-  print("Model created! Predicting...")
-  image_path = 'dataset/trash_images/cardboard/cardboard32.jpg'
-  predicted_class = trained_model.predict(image_path)
-  print(f'Predicted class: {config.CLASS_NAMES[predicted_class]}')
