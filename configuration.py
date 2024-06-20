@@ -1,6 +1,6 @@
 DATASET = "trash_images"
 ROOT_DIR = r"dataset/trash_images/"
-LR = 0.001
+LR = 0.0003
 SCHEDULER_MAX_IT = 30
 WEIGH_DECAY = 1e-4
 EPSILON = 1e-4
@@ -9,7 +9,7 @@ EPSILON = 1e-4
 BATCH_SIZE = 64
 TEST_SIZE = 0.2
 TRAIN_SIZE = 1 - TEST_SIZE
-EPOCHS = 3
+EPOCHS = 15
 USE_INDEX = False
 # callback
 PATIENCE = 3
