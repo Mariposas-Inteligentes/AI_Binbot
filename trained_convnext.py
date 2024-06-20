@@ -17,26 +17,19 @@ class TrainedConvNext():
     self.class_count = count_classes(config.ROOT_DIR)
     torch.set_float32_matmul_precision("high")
 
-    # Create the model
-    metrics = MetricCollection({})
-    vector_metrics = MetricCollection({})
-
     # Create model
     self.convnext = ConvNext(num_classes=self.class_count, device=self.device)
     self.model = ImageClassificationLightningModule.load_from_checkpoint(
       checkpoint_path="checkpoints/convnext/convnext_.ckpt",
       model = self.convnext,
       loss_fn=nn.CrossEntropyLoss(),
-      metrics=metrics,
-      vectorized_metrics=vector_metrics,
+      metrics=MetricCollection({}),
+      vectorized_metrics=MetricCollection({}),
       lr=config.LR,    
       scheduler_max_it=config.SCHEDULER_MAX_IT,
     ).model
 
-    # Ensure model is in evaluation mode
-    self.model.eval()
-
-    train_transform, self.test_transform = ConvNext.get_transformations()
+    self.train_transform, self.test_transform = ConvNext.get_transformations()
 
   # Load and preprocess the image
   def load_image(self, image_path):
@@ -48,8 +41,8 @@ class TrainedConvNext():
       # Load image and move it to the correct device
       image_tensor = self.load_image(image_path).to(self.device)
 
-      # Disable gradient calculation for inference
-      with torch.no_grad():
+      # Ensure model is mode designed for data processing
+      with torch.inference_mode():
           outputs = self.model(image_tensor)
       
       # Get the predicted class (argmax of the output probabilities)
