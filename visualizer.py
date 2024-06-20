@@ -33,6 +33,13 @@ def capture_photo():
         
         cv2.imwrite(save_path, frame)  # Save the captured frame to a file
         messagebox.showinfo("Success", f"Photo captured successfully!\nSaved at: {save_path}")
+        # Send to CNN after the main loop
+        print("Creating the model...")
+        trained_model = TrainedConvNext()
+        print("Model created! Predicting...")
+        image_path = 'photos/captured_photo.jpg'
+        predicted_class = trained_model.predict(image_path)
+        print(f'Predicted class: {config.CLASS_NAMES[predicted_class]}')
     else:
         messagebox.showerror("Error", "Failed to capture photo")
 
@@ -56,6 +63,7 @@ def start_camera():
     capture_button = tk.Button(camera_window, text="Capture Photo", command=capture_photo)
     capture_button.pack(pady=20)
 
+
     # Start updating the webcam feed
     update_frame()
 
@@ -66,9 +74,21 @@ def on_camera_window_close():
     cap.release()
     camera_window.destroy()
 
+
 # Create the main window
 root = tk.Tk()
 root.title("Main Window")
+root.geometry("1920x1080")
+root.title("Binbot")  
+root.resizable(True, True)
+
+
+im=tk.PhotoImage(file='./trashcans/Closed.gif')
+im= im.subsample(1,1) #tamaño
+#Se establece la imagen como una etiqueta:
+imaLab= tk.Label(image=im)
+imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
+
 
 # Create a button to open the camera window
 open_camera_button = tk.Button(root, text="Open Camera", command=start_camera)
@@ -77,10 +97,3 @@ open_camera_button.pack(pady=20)
 # Run the Tkinter event loop
 root.mainloop()
 
-# Send to CNN after the main loop
-print("Creating the model...")
-trained_model = TrainedConvNext()
-print("Model created! Predicting...")
-image_path = 'photos/captured_photo.jpg'
-predicted_class = trained_model.predict(image_path)
-print(f'Predicted class: {config.CLASS_NAMES[predicted_class]}')
