@@ -22,7 +22,7 @@ To install of the dependencies in Windows 10, run the following commands in a te
 
 ### Dataset
 
-The data to train the model must be in a directory named `datase\t`. Inside of this directory there must be another labeled `trash_images\` which contains `cardboard\`, `glass\` and `metal\` directories, each one with the corresponding images.
+The data to train the model must be in a directory named `dataset\`. Inside of this directory there must be another labeled `trash_images\` which contains `cardboard\`, `glass\` and `metal\` directories, each one with the corresponding images.
 
 To download the dataset used [click here](https://drive.google.com/file/d/1qTWqHlfCpJmB4t92r3oxBf1KNOfoN_jM/view?usp=sharing).
 
@@ -53,7 +53,7 @@ To download a checkpoint [click here](https://drive.google.com/file/d/15sPQ42-Zw
 
 ### Photos
 
-This interface also requires a `trashcans` directory with the corresponding photos of `Closed.gif`, `Cardboard.gif`, `Glass.gif` and `Metal.gif`.
+This interface also requires a `trashcans\` directory with the corresponding photos of `Closed.gif`, `Cardboard.gif`, `Glass.gif` and `Metal.gif`.
 
 ### Execution
 
