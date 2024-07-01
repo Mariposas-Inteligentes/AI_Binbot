@@ -22,9 +22,9 @@ To install of the dependencies in Windows 10, run the following commands in a te
 
 ### Dataset
 
-The data to train the model must be in a directory named `data`. Inside of this directory there must be another labeled `trash_images` which contains `cardboard`, `glass` and `metal` directories, each one with the corresponding images.
+The data to train the model must be in a directory named `datase\t`. Inside of this directory there must be another labeled `trash_images\` which contains `cardboard\`, `glass\` and `metal\` directories, each one with the corresponding images.
 
-To download the dataset used [click here](https://drive.google.com/file/d/1fyionOSheuMKfuNbYtfLNYMqVTUCfbOn/view?usp=drivesdk).
+To download the dataset used [click here](https://drive.google.com/file/d/1qTWqHlfCpJmB4t92r3oxBf1KNOfoN_jM/view?usp=sharing).
 
 ### Execution
 
@@ -47,9 +47,9 @@ To install them, run in a terminal the following commands:
 
 ### Checkpoint
 
-The BinBot required a checkpoint of the trained model in the directory `checkpoints\convnext`. 
+The BinBot required a checkpoint of the trained model in the directory `checkpoints\convnext\`. 
 
-To download a checkpoint [click here](https://drive.google.com/file/d/1NjXWMxWC2fOPQfH41QAz5CazJfHsDph_/view?usp=sharing).
+To download a checkpoint [click here](https://drive.google.com/file/d/15sPQ42-ZwBAwwg8D9xD34Gcwf1kXZSTr/view?usp=sharing).
 
 ### Photos
 
