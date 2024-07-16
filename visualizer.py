@@ -74,7 +74,7 @@ def start_camera():
 
     # Create a new window for the camera feed
     camera_window = tk.Toplevel(root)
-    camera_window.title("Camera Feed")
+    camera_window.title("Cámara")
     camera_window.geometry("750x550")
     camera_window.configure(bg = '#DAF5EB')
     center_window(camera_window, 750, 580)
@@ -86,7 +86,7 @@ def start_camera():
     # Create a button to capture the photo
     capture_button = tk.Button(
         camera_window, 
-        text="Capture Photo", 
+        text="Tomar Foto", 
         command=capture_photo,
         width=20,  
         height=2,
@@ -108,7 +108,7 @@ def on_camera_window_close():
 root = tk.Tk()
 root.title("Main Window")
 root.geometry("1209x700")
-root.title("Binbot")
+root.title("BinBot")
 root.resizable(False, False)
 root.configure(bg = "#DAF5EB")
 center_window(root, 1209, 700)
@@ -122,7 +122,7 @@ imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
 # Create a button to open the camera window
 open_camera_button = tk.Button(
     root,
-    text="Open Camera", 
+    text="Abrir Cámara", 
     command=start_camera, 
     width=20, 
     height=2,
