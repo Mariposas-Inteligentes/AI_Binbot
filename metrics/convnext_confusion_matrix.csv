@@ -1,4 +1,5 @@
-,cardboard,glass,metal
-cardboard,466,3,5
-glass,0,468,6
-metal,4,6,464
+,cardboard,glass,metal,plastic
+cardboard,468,0,3,3
+glass,0,439,14,21
+metal,1,11,460,2
+plastic,4,29,5,436

@@ -47,4 +47,4 @@ STD = [0.229, 0.224, 0.225]
 MEAN = [0.485, 0.456, 0.406]
 ROTATION = 30
 
-CLASS_NAMES = ["cardboard", "glass", "metal"]
+CLASS_NAMES = ["cardboard", "glass", "metal", "plastic"]
