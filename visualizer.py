@@ -36,11 +36,14 @@ def update_frame():
     camera_window.after(10, update_frame)
 
 def show_trash(result):
-    new_image = PhotoImage(file='./trashcans/Metal.gif') 
+    print("result = " + result)
+    new_image = PhotoImage(file='./trashcans/metal.gif') 
     if (result == "glass"):
-        new_image = PhotoImage(file='./trashcans/Glass.gif') 
+        new_image = PhotoImage(file='./trashcans/glass.gif') 
     elif (result == "cardboard"):
-        new_image = PhotoImage(file='./trashcans/Cardboard.gif') 
+        new_image = PhotoImage(file='./trashcans/cardboard.gif') 
+    elif (result == "plastic"):
+        new_image = PhotoImage(file='./trashcans/plastic.gif') 
     imaLab.config(image=new_image)
     imaLab.image = new_image
 
@@ -114,7 +117,7 @@ root.configure(bg = "#DAF5EB")
 center_window(root, 1209, 700)
 
 # Default image
-im=tk.PhotoImage(file='./trashcans/Closed.gif')
+im=tk.PhotoImage(file='./trashcans/closed.gif')
 im= im.subsample(1,1)
 imaLab= tk.Label(image=im)
 imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
