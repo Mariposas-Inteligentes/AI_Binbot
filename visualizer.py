@@ -16,6 +16,7 @@ def center_window(root, width, height):
     x = (screen_width // 2) - (width // 2)
     y = (screen_height // 2) - (height // 2)
 
+
     # Set the geometry of the window
     root.geometry(f'{width}x{height}+{x}+{y}')
 
@@ -36,16 +37,22 @@ def update_frame():
     camera_window.after(10, update_frame)
 
 def show_trash(result):
-    print("result = " + result)
-    new_image = PhotoImage(file='./trashcans/metal.gif') 
+    image_path= './trashcans/metal.gif'
     if (result == "glass"):
-        new_image = PhotoImage(file='./trashcans/glass.gif') 
+        image_path = './trashcans/glass.gif'
     elif (result == "cardboard"):
-        new_image = PhotoImage(file='./trashcans/cardboard.gif') 
+        image_path='./trashcans/cardboard.gif'
     elif (result == "plastic"):
-        new_image = PhotoImage(file='./trashcans/plastic.gif') 
-    imaLab.config(image=new_image)
-    imaLab.image = new_image
+        image_path='./trashcans/plastic.gif'
+
+    img = Image.open(image_path)
+    label_width = 1250
+    label_height = 1000
+    img.thumbnail((label_width, label_height))
+    im = ImageTk.PhotoImage(img)
+    imaLab = tk.Label(root, image=im, width=label_width, height=label_height, anchor="center")
+    imaLab.image = im
+    imaLab.place(relx=0.5, rely=0.5, anchor="center")
 
     camera_window.destroy()
 
@@ -117,10 +124,15 @@ root.configure(bg = "#DAF5EB")
 center_window(root, 1209, 700)
 
 # Default image
-im=tk.PhotoImage(file='./trashcans/closed.gif')
-im= im.subsample(1,1)
-imaLab= tk.Label(image=im)
-imaLab.place(x=0, y=0, relwidth=1.0, relheigh=1.0)
+image_path = './trashcans/closed.gif'
+img = Image.open(image_path)
+label_width = 1250
+label_height = 1000
+img.thumbnail((label_width, label_height))
+im = ImageTk.PhotoImage(img)
+imaLab = tk.Label(root, image=im, width=label_width, height=label_height, anchor="center")
+imaLab.image = im
+imaLab.place(relx=0.5, rely=0.5, anchor="center")
 
 # Create a button to open the camera window
 open_camera_button = tk.Button(
