@@ -37,6 +37,7 @@ def update_frame():
     camera_window.after(10, update_frame)
 
 def show_trash(result):
+    global open_camera_button
     image_path= './trashcans/metal.gif'
     if (result == "glass"):
         image_path = './trashcans/glass.gif'
@@ -50,9 +51,12 @@ def show_trash(result):
     label_height = 1000
     img.thumbnail((label_width, label_height))
     im = ImageTk.PhotoImage(img)
-    imaLab = tk.Label(root, image=im, width=label_width, height=label_height, anchor="center")
+    
+    # imaLab = tk.Label(root, image=im, width=label_width, height=label_height, anchor="center")
+    # imaLab.image = im
+    # imaLab.place(relx=0.5, rely=0.5, anchor="center")
+    imaLab.configure(image=im)
     imaLab.image = im
-    imaLab.place(relx=0.5, rely=0.5, anchor="center")
 
     camera_window.destroy()
 
