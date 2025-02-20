@@ -62,6 +62,7 @@ def show_trash(result):
 
 # Function to capture a photo
 def capture_photo():
+    global trained_model
     ret, frame = cap.read()  
     if ret:
         # Create directory if it doesn't exist
@@ -71,7 +72,6 @@ def capture_photo():
         
         cv2.imwrite(save_path, frame)  # Save the captured frame to a file
         # Send to CNN after the main loop
-        trained_model = TrainedConvNext()
         image_path = 'photos/captured_photo.jpg'
         predicted_class = trained_model.predict(image_path)
         show_trash(config.CLASS_NAMES[predicted_class])
@@ -120,12 +120,13 @@ def on_camera_window_close():
 
 # Create the main window
 root = tk.Tk()
-root.title("Main Window")
 root.geometry("1209x700")
 root.title("BinBot")
 root.resizable(False, False)
 root.configure(bg = "#DAF5EB")
 center_window(root, 1209, 700)
+
+trained_model = TrainedConvNext()
 
 # Default image
 image_path = './trashcans/closed.gif'
